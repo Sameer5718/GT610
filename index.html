@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <button id="toggle" value="hide">click me to toggle</button>
+    <p>my name is sameer bhandari</p>
+    <script>
+        $(document).ready(function(){
+            $("#toggle").click(function(){
+                $("p").toggle(function(){
+                    alert("message will appear/disappear");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
