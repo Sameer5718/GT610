@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Item Block</title>
+    <style>
+        .item-block {
+            border: 1px solid #ddd;
+            padding: 16px;
+            width: 200px;
+            text-align: center;
+            margin: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+        .item-block img {
+            width: 100%;
+            height: auto;
+        }
+        .item-block h2 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .item-block p {
+            font-size: 16px;
+            color: #b12704;
+            margin: 10px 0;
+        }
+        .item-block button {
+            background-color: #ffa41c;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .item-block button:hover {
+            background-color: #cc8400;
+        }
+    </style>
+</head>
+<body>
+
+<div class="item-block" data-id="1" data-name="Sample Product" data-price="19.99">
+    <img src="https://via.placeholder.com/150" alt="Product Image">
+    <h2>Sample Product</h2>
+    <p>$19.99</p>
+    <button onclick="addToCart(event)">Add to Cart</button>
+</div>
+
+<script>
+    function addToCart(event) {
+        var itemBlock = event.target.closest('.item-block');
+        var itemId = itemBlock.getAttribute('data-id');
+        var itemName = itemBlock.getAttribute('data-name');
+        var itemPrice = itemBlock.getAttribute('data-price');
+
+        var item = {
+            id: itemId,
+            name: itemName,
+            price: itemPrice,
+            quantity: 1
+        };
+
+        var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        var existingItem = cart.find(i => i.id === item.id);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push(item);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert('Item added to cart');
+    }
+</script>
+<a href="cart.html">Go to Cart</a>
+
+</body>
+</html>
